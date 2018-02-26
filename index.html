@@ -60,11 +60,10 @@ var c =$.getJSON('poultry.json', function (data) {
     // Define the geojson layer and add it to the map
     L.geoJson(data).addTo(map);
 });
-var cities = L.layerGroup([ a, b, c]);
+var cities = L.layerGroup([ b, c]);
 
 var baseMaps = {
-    "Grayscale": grayscale,
-    "Streets": streets
+    "united states": a
 };
 
 var overlayMaps = {
