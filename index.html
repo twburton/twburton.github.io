@@ -56,7 +56,10 @@ $.getJSON('HPAI_Only.json', function (data) {
     // Define the geojson layer and add it to the map
     L.geoJson(data).addTo(map);
 });
-	
+$.getJSON('poultry.json', function (data) {
+    // Define the geojson layer and add it to the map
+    L.geoJson(data).addTo(map);
+});
 </script>
 
 
