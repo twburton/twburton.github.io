@@ -48,18 +48,31 @@
 	}).addTo(map);
 
 	
-	$.getJSON('us.json', function (data) {
+var a = $.getJSON('us.json', function (data) {
     // Define the geojson layer and add it to the map
     L.geoJson(data).addTo(map);
 });
-$.getJSON('HPAI_Only.json', function (data) {
+var b =$.getJSON('HPAI_Only.json', function (data) {
     // Define the geojson layer and add it to the map
     L.geoJson(data).addTo(map);
 });
-$.getJSON('poultry.json', function (data) {
+var c =$.getJSON('poultry.json', function (data) {
     // Define the geojson layer and add it to the map
     L.geoJson(data).addTo(map);
 });
+var cities = L.layerGroup([ a, b, c]);
+
+var baseMaps = {
+    "Grayscale": grayscale,
+    "Streets": streets
+};
+
+var overlayMaps = {
+    "Cities": cities
+};
+
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
 </script>
 
 
