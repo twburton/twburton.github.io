@@ -37,7 +37,11 @@
 </script>
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>
-	var map = L.map('map').setView([39.8283, -98.5795], 5);
+var a;
+var b;
+var c;
+
+	var map = L.map('map').setView([39.8283, -98.5795], 5, layers: [a, b,c]);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
@@ -48,17 +52,17 @@
 	}).addTo(map);
 
 	
-var a = $.getJSON('us.json', function (data) {
+a = $.getJSON('us.json', function (data1) {
     // Define the geojson layer and add it to the map
-    L.geoJson(data).addTo(map);
+    L.geoJson(data1).addTo(map);
 });
-var b =$.getJSON('HPAI_Only.json', function (data) {
+b =$.getJSON('HPAI_Only.json', function (data2) {
     // Define the geojson layer and add it to the map
-    L.geoJson(data).addTo(map);
+    L.geoJson(data2).addTo(map);
 });
-var c =$.getJSON('poultry.json', function (data) {
+c =$.getJSON('poultry.json', function (data3) {
     // Define the geojson layer and add it to the map
-    L.geoJson(data).addTo(map);
+    L.geoJson(data3).addTo(map);
 });
 var cities = L.layerGroup([ b, c]);
 
