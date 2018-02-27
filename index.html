@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	
-	<title>AI Modeling</title>
+	<title>Layers Control Tutorial - Leaflet</title>
 
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=5.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw==" crossorigin=""></script>
@@ -20,8 +19,8 @@
 			margin: 0;
 		}
 		#map {
-			width: 1920px;
-			height: 1080px;
+			width: 600px;
+			height: 400px;
 		}
 	</style>
 
@@ -31,76 +30,39 @@
 
 <div id='map'></div>
 
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js">
-</script>
-
 <script>
+	var cities = L.layerGroup();
 
-/*var mboxattr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' + '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +'Imagery © <a href="http://mapbox.com">Mapbox</a>'
-var mapboxUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
-//var a = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mboxattr}),
-//    b   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mboxattr}),
-//	c   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mboxattr});
-var a, b, c;
+	L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(cities),
+	L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities),
+	L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(cities),
+	L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
 
-	//var map = L.map('map').setView([39.8283, -98.5795], 5);
-	var map = L.map('map', {
-    center: [39.8283, -98.5795],
-    zoom: 5,
-    layers: [a,b,c]
-});
-	
-	L.tileLayer(mapboxUrl, {
-		maxZoom: 18,
-		attribution: mboxattr,
-		id: 'mapbox.light'
-	}).addTo(map);
-*/
 
-//var a = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution}),b   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution}),c   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
-//var map = L.map('map', {center: [39.8283, -98.5795],zoom: 5,layers: [a,b,c]});
-
-	var map = L.map('map').setView([39.8283, -98.5795], 5);
-	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-		id: 'mapbox.light'
-	}).addTo(map);
+		mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
-	
-a = $.getJSON('us.json', function (data1) {
-    // Define the geojson layer and add it to the map
-    L.geoJson(data1).addTo(map);
-});
-b =$.getJSON('HPAI_Only.json', function (data2) {
-    // Define the geojson layer and add it to the map
-    L.geoJson(data2).addTo(map);
-});
-c =$.getJSON('poultry.json', function (data3) {
-    // Define the geojson layer and add it to the map
-    L.geoJson(data3).addTo(map);
-});
-var cities = L.layerGroup([b, c]);
+	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
+		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
 
-var baseMaps = {
-    "united states": a
-};
+	var map = L.map('map', {
+		center: [39.73, -104.99],
+		zoom: 10,
+		layers: [grayscale, cities]
+	});
 
-var overlayMaps = {
-    "Cities": cities
-};
+	var baseLayers = {
+		"Grayscale": grayscale,
+		"Streets": streets
+	};
 
+	var overlays = {
+		"Cities": cities
+	};
 
-var layerControl = new L.control.layers(baseMaps, overlayMaps).addTo(map);
-var toggleControl = new L.Control.Toggle(layerControl, {
-    position: 'bottomleft',
-    addText: 'Add overlays',
-    removeText: 'Remove overlays'
-}).addTo(map);
+	L.control.layers(baseLayers, overlays).addTo(map);
 </script>
 
 
