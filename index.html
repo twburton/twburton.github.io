@@ -37,11 +37,12 @@
 </script>
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>
-var a;
-var b;
-var c;
+var a = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution}),
+    b   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution}),
+	c   = L.tileLayer(mapboxUrl, {id: 'MapID', attribution: mapboxAttribution});
 
-	var map = L.map('map').setView([39.8283, -98.5795], 5, layers: [a, b,c]);
+
+	var map = L.map('map').setView([39.8283, -98.5795], 5, layers: [a,b,c]);
 
 	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		maxZoom: 18,
