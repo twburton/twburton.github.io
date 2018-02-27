@@ -33,11 +33,18 @@
 <script>
 	var cities = L.layerGroup();
 
-	L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(cities),
-	L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities),
-	L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(cities),
-	L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
-
+	a = $.getJSON('us.json', function (data1) {
+    // Define the geojson layer and add it to the map
+    L.geoJson(data1).addTo(cities);
+});
+b =$.getJSON('HPAI_Only.json', function (data2) {
+    // Define the geojson layer and add it to the map
+    L.geoJson(data2).addTo(cities);
+});
+c =$.getJSON('poultry.json', function (data3) {
+    // Define the geojson layer and add it to the map
+    L.geoJson(data3).addTo(cities);
+});
 
 	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
