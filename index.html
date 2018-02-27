@@ -33,6 +33,8 @@
 
 <script>
 	var cities = L.layerGroup();
+	var HPAI_Only = L.layerGroup();
+	var poultry = L.layerGroup();
 
 	$.getJSON('us.json', function (data1) {
     // Define the geojson layer and add it to the map
@@ -40,11 +42,11 @@
 	});
 	$.getJSON('HPAI_Only.json', function (data2) {
     // Define the geojson layer and add it to the map
-    L.geoJson(data2).addTo(cities);
+    L.geoJson(data2).addTo(HPAI_Only);
 	});
 	$.getJSON('poultry.json', function (data3) {
     // Define the geojson layer and add it to the map
-    L.geoJson(data3).addTo(cities);
+    L.geoJson(data3).addTo(poultry);
 	});
 
 	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -56,9 +58,9 @@
 		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
 
 	var map = L.map('map', {
-		center: [39.73, -104.99],
-		zoom: 10,
-		layers: [grayscale, cities]
+		center: [39.8283, -98.5795],
+		zoom: 5,
+		layers: [grayscale, cities, HPAI_Only, poultry]
 	});
 
 	var baseLayers = {
@@ -67,7 +69,9 @@
 	};
 
 	var overlays = {
-		"Cities": cities
+		"US": cities
+		"HPAI": HPAI_Only
+		"Poultry": poultry
 	};
 
 	L.control.layers(baseLayers, overlays).addTo(map);
