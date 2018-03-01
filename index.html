@@ -58,9 +58,9 @@
             coords.push(feature.geometry.coordinates);
 
 }
-var pintailcoords = pintail.geometry.coordinates;
-L.geoJson(pintail, {
-    pointToLayer: function (pintail, pintailcoords) {
+var pintailcoords = HPAI_Only.geometry.coordinates;
+L.geoJson(HPAI_Only, {
+    pointToLayer: function (HPAI_Only, pintailcoords) {
         return L.circleMarker(pintailcoords, geojsonMarkerOptions);
     }
 }).addTo(map);
@@ -116,11 +116,11 @@ L.geoJson(pintail, {
 	L.control.layers(baseLayers, overlays).addTo(map);
 	
 	
-	function onEachFeature(pintail, pintail) {
-    pintail.on('click', function (e) {
+	function onEachFeature(HPAI_Only, HPAI_Only) {
+    HPAI_Only.on('click', function (e) {
 
         // change icon
-        console.log(pintail.options.icon);
+        console.log(HPAI_Only.options.icon);
         e.target.setIcon(myIconReplc);
 
     });
