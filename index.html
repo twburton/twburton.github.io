@@ -121,18 +121,21 @@ L.geoJson(HPAI_Only, {
 
         // change icon
         console.log(HPAI_Only.options.icon);
-        e.target.setIcon(myIconReplc);
+        e.target.setIcon(circleicon);
 
     });
 }
-	var myIconReplc = L.Icon.extend({
+var circleicon = L.Icon.extend({
     options: {
-        iconUrl: "BlueCircle.png",
-        iconSize: [30,35],
-        iconSize: [20, 25],
-        iconAnchor: [8, 30] 
+        shadowUrl: '"BlueCircle.png',
+        iconSize:     [38, 95],
+        shadowSize:   [50, 64],
+        iconAnchor:   [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
     }
 });
+
 /*
 var geojsonMarkerOptions = {
 radius: 5,
@@ -144,7 +147,7 @@ fillOpacity: 0.9
 };
 
 layer.on('click', function (e) {
-   e.target.setIcon(new myIconReplc);
+   e.target.setIcon(new circleicon);
 });
 	
 	*/
