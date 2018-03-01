@@ -40,29 +40,39 @@
 	var pintail4185 = L.layerGroup();
 	var pintail = L.layerGroup();
 	var pintail4185points = L.layerGroup();
+	
+	
+	var geojsonMarkerOptions = {
+    radius: 8,
+    fillColor: "#ff7800",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.8
+};
+L.geoJson(pintail, {
+    pointToLayer: function (pintail, pintail.geometry.coordinates) {
+        return L.circleMarker(pintail.geometry.coordinates, geojsonMarkerOptions);
+    }
+}).addTo(map);}
 
 	$.getJSON('us.json', function (data1) {
     // Define the geojson layer and add it to the map
     L.geoJson(data1).addTo(cities);
 	});
 	$.getJSON('HPAI_Only.json', function (data2) {
-    // Define the geojson layer and add it to the map
     L.geoJson(data2).addTo(HPAI_Only);
 	});
 	$.getJSON('poultry.json', function (data3) {
-    // Define the geojson layer and add it to the map
     L.geoJson(data3).addTo(poultry);
 	});
 	$.getJSON('pintail4185-SJ91.json', function (data3) {
-    // Define the geojson layer and add it to the map
     L.geoJson(data3).addTo(pintail4185);
 	});
 	$.getJSON('pintail4185-SJ91points.json', function (data3) {
-    // Define the geojson layer and add it to the map
     L.geoJson(data3).addTo(pintail4185points);
 	});
 	$.getJSON('pintail.json', function (data3) {
-    // Define the geojson layer and add it to the map
     L.geoJson(data3).addTo(pintail);
 	});
 	
@@ -96,9 +106,42 @@
 
 	L.control.layers(baseLayers, overlays).addTo(map);
 	
+	/*
+	function onEachFeature(feature, layer) {
+    layer.on('click', function (e) {
+
+        // change icon
+        console.log(layer.options.icon);
+        e.target.setIcon(myIconReplc);
+
+    });
+}
+	var myIconReplc = L.Icon.extend({
+    options: {
+        iconUrl: "",
+        iconSize: [30,35],
+        shadowUrl: "",
+        shadowAnchor: [8, 20],
+        shadowSize: [25, 18],
+        iconSize: [20, 25],
+        iconAnchor: [8, 30] 
+    }
+});
+
+var geojsonMarkerOptions = {
+radius: 5,
+fillColor: "#33ccff",
+color: "#000",
+weight: 1,
+opacity: 1,
+fillOpacity: 0.9
+};
+
+layer.on('click', function (e) {
+   e.target.setIcon(new myIconReplc);
+});
 	
-	
-	
+	*/
 	
 	
 	
