@@ -116,11 +116,11 @@ L.geoJson(pintail, {
 	L.control.layers(baseLayers, overlays).addTo(map);
 	
 	
-	function onEachFeature(feature, layer) {
-    layer.on('click', function (e) {
+	function onEachFeature(pintail, pintail) {
+    pintail.on('click', function (e) {
 
         // change icon
-        console.log(layer.options.icon);
+        console.log(pintail.options.icon);
         e.target.setIcon(myIconReplc);
 
     });
