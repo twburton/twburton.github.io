@@ -35,6 +35,7 @@
 	var cities = L.layerGroup();
 	var HPAI_Only = L.layerGroup();
 	var poultry = L.layerGroup();
+	var poultry = L.layerGroup();
 
 	$.getJSON('us.json', function (data1) {
     // Define the geojson layer and add it to the map
@@ -48,7 +49,15 @@
     // Define the geojson layer and add it to the map
     L.geoJson(data3).addTo(poultry);
 	});
-
+	$.getJSON('pintail4185-SJ91.json', function (data3) {
+    // Define the geojson layer and add it to the map
+    L.geoJson(data3).addTo(pintail4185);
+	});
+	$.getJSON('pintail.json', function (data3) {
+    // Define the geojson layer and add it to the map
+    L.geoJson(data3).addTo(pintail);
+	});
+	
 	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -60,7 +69,7 @@
 	var map = L.map('map', {
 		center: [39.8283, -98.5795],
 		zoom: 3.5,
-		layers: [grayscale, cities, HPAI_Only, poultry]
+		layers: [grayscale, cities, HPAI_Only, poultry, pintail, pintail4185]
 	});
 
 	var baseLayers = {
@@ -72,6 +81,8 @@
 		"US": cities,
 		"HPAI": HPAI_Only,
 		"Poultry": poultry
+		"Pintail": pintail
+		"pintail4185": pintail4185
 	};
 
 	L.control.layers(baseLayers, overlays).addTo(map);
