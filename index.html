@@ -41,7 +41,7 @@
 	var pintail = L.layerGroup();
 	var pintail4185points = L.layerGroup();
 	
-	
+	/*
 	var geojsonMarkerOptions = {
     radius: 8,
     fillColor: "#ff7800",
@@ -50,13 +50,21 @@
     opacity: 1,
     fillOpacity: 0.8
 };
+
+ coords = []; //define an array to store coordinates
+   onEachFeature: function (feature, layer) {
+             popupOptions = {maxWidth: 200};
+            layer.bindPopup(feature.properties.popupContent);
+            coords.push(feature.geometry.coordinates);
+
+}
 var pintailcoords = pintail.geometry.coordinates;
 L.geoJson(pintail, {
     pointToLayer: function (pintail, pintailcoords) {
         return L.circleMarker(pintailcoords, geojsonMarkerOptions);
     }
 }).addTo(map);
-
+*/
 	$.getJSON('us.json', function (data1) {
     // Define the geojson layer and add it to the map
     L.geoJson(data1).addTo(cities);
@@ -107,7 +115,7 @@ L.geoJson(pintail, {
 
 	L.control.layers(baseLayers, overlays).addTo(map);
 	
-	/*
+	
 	function onEachFeature(feature, layer) {
     layer.on('click', function (e) {
 
@@ -119,16 +127,13 @@ L.geoJson(pintail, {
 }
 	var myIconReplc = L.Icon.extend({
     options: {
-        iconUrl: "",
+        iconUrl: "BlueCircle.png",
         iconSize: [30,35],
-        shadowUrl: "",
-        shadowAnchor: [8, 20],
-        shadowSize: [25, 18],
         iconSize: [20, 25],
         iconAnchor: [8, 30] 
     }
 });
-
+/*
 var geojsonMarkerOptions = {
 radius: 5,
 fillColor: "#33ccff",
