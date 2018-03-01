@@ -50,9 +50,10 @@
     opacity: 1,
     fillOpacity: 0.8
 };
+var pintailcoords = pintail.geometry.coordinates;
 L.geoJson(pintail, {
-    pointToLayer: function (pintail, pintail.geometry.coordinates) {
-        return L.circleMarker(pintail.geometry.coordinates, geojsonMarkerOptions);
+    pointToLayer: function (pintail, pintailcoords) {
+        return L.circleMarker(pintailcoords, geojsonMarkerOptions);
     }
 }).addTo(map);}
 
