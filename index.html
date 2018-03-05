@@ -33,6 +33,7 @@
 <script src="js/d3.min.js"></script>
 <script src="js/queue.min.js"></script>
 <script src="js/topojson.min.js"></script>
+ <script src="https://rawgit.com/dwilhelm89/LeafletSlider/master/SliderControl.js" type="text/javascript"></script>
 <script>
 	var cities = L.layerGroup();
 	var HPAI_Only = L.layerGroup();
@@ -40,7 +41,7 @@
 	var pintail4185 = L.layerGroup();
 	var pintail = L.layerGroup();
 	var pintail4185points = L.layerGroup();
-	
+	var sliderControl = null;
 	/*
 	var geojsonMarkerOptions = {
     radius: 8,
@@ -71,6 +72,16 @@ L.geoJson(HPAI_Only, {
 	});
 	$.getJSON('HPAI_Only.json', function (data2) {
     L.geoJson(data2).addTo(HPAI_Only);
+	 var sliderControl = L.control.sliderControl({
+        position: "topright",
+        layer: HPAI_Only,
+        range: true
+      });
+
+      //Make sure to add the slider to the map ;-)
+      map.addControl(sliderControl);
+      //An initialize the slider
+      sliderControl.startSlider();
 	});
 	$.getJSON('poultry.json', function (data3) {
     L.geoJson(data3).addTo(poultry);
@@ -125,17 +136,15 @@ L.geoJson(HPAI_Only, {
 
     });
 }
-var circleicon = L.Icon.extend({
+
+	var circleicon = L.Icon.extend({
     options: {
-        shadowUrl: '"BlueCircle.png',
-        iconSize:     [38, 95],
-        shadowSize:   [50, 64],
-        iconAnchor:   [22, 94],
-        shadowAnchor: [4, 62],
-        popupAnchor:  [-3, -76]
+        iconUrl: "BlueCircle.png",
+        iconSize: [30,35],
+        iconSize: [20, 25],
+        iconAnchor: [8, 30] 
     }
 });
-
 /*
 var geojsonMarkerOptions = {
 radius: 5,
@@ -147,7 +156,7 @@ fillOpacity: 0.9
 };
 
 layer.on('click', function (e) {
-   e.target.setIcon(new circleicon);
+   e.target.setIcon(new myIconReplc);
 });
 	
 	*/
