@@ -75,6 +75,10 @@ L.geoJson(HPAI_Only, {
     }
 }).addTo(map);
 */
+  L.tileLayer('//{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
 	$.getJSON('us.json', function (data1) {
     // Define the geojson layer and add it to the map
     L.geoJson(data1).addTo(cities);
