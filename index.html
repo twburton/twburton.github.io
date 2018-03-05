@@ -83,7 +83,14 @@ L.geoJson(HPAI_Only, {
 	
 	$.getJSON('HPAI_Only.json', function (data2) {
     L.geoJson(data2).addTo(HPAI_Only);
-	
+	var testlayer = L.geoJson(data2);
+	 var sliderControl = L.control.sliderControl({
+        position: "topright",
+        layer: data2,
+        range: true
+      });
+      map.addControl(sliderControl);
+      sliderControl.startSlider();
 	});
 	
 	
@@ -131,7 +138,7 @@ L.geoJson(HPAI_Only, {
 
 	L.control.layers(baseLayers, overlays).addTo(map);
 	
-	
+	/*
 	function onEachFeature(HPAI_Only, HPAI_Only) {
     HPAI_Only.on('click', function (e) {
 
@@ -150,6 +157,7 @@ L.geoJson(HPAI_Only, {
         iconAnchor: [8, 30] 
     }
 });
+*/
 /*
 var geojsonMarkerOptions = {
 radius: 5,
