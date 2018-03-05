@@ -82,8 +82,8 @@ L.geoJson(HPAI_Only, {
 	$.getJSON('HPAI_Only.json', function (data2) {
     L.geoJson(data2).addTo(HPAI_Only);
 	 var sliderControl = L.control.sliderControl({
-        position: "topright",
-        layer: HPAI_Only,
+        position: "bottomright",
+        layer: data2,
         range: true
       });
 
