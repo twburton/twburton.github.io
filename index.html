@@ -81,15 +81,13 @@ L.geoJson(HPAI_Only, {
 	});
 	$.getJSON('HPAI_Only.json', function (data2) {
     L.geoJson(data2).addTo(HPAI_Only);
+	var testlayer = L.geoJson(data2);
 	 var sliderControl = L.control.sliderControl({
         position: "bottomright",
-        layer: data2,
+        layer: testlayer,
         range: true
       });
-
-      //Make sure to add the slider to the map ;-)
       map.addControl(sliderControl);
-      //An initialize the slider
       sliderControl.startSlider();
 	});
 	$.getJSON('poultry.json', function (data3) {
