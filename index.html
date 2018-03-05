@@ -34,9 +34,6 @@
 <script src="js/queue.min.js"></script>
 <script src="js/topojson.min.js"></script>
  <script src="js/SliderControl.js" type="text/javascript"></script>
- 
- 
-   
  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -78,13 +75,15 @@ L.geoJson(HPAI_Only, {
 	});
 	$.getJSON('HPAI_Only.json', function (data2) {
     L.geoJson(data2).addTo(HPAI_Only);
-	var testlayer = L.geoJson(data2);
 	 var sliderControl = L.control.sliderControl({
         position: "topright",
-        layer: testlayer,
+        layer: HPAI_Only,
         range: true
       });
+
+      //Make sure to add the slider to the map ;-)
       map.addControl(sliderControl);
+      //An initialize the slider
       sliderControl.startSlider();
 	});
 	$.getJSON('poultry.json', function (data3) {
