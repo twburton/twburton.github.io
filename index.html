@@ -82,10 +82,6 @@ L.geoJson(HPAI_Only, {
 	
 	
 	$.getJSON('HPAI_Only.json', function (data2) {
-    L.geoJson(data2).addTo(HPAI_Only);
-	});
-	
-	$.getJSON('HPAI_Only.json', function (data2) {
   
 	var testlayer = L.geoJson(data2);
 	 var sliderControl = L.control.sliderControl({
@@ -95,7 +91,10 @@ L.geoJson(HPAI_Only, {
       });
       map.addControl(sliderControl);
       sliderControl.startSlider();
+	  
+	    L.geoJson(data2).addTo(HPAI_Only);
 	});
+	
 	
 	
 	$.getJSON('poultry.json', function (data3) {
