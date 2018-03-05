@@ -79,17 +79,7 @@ L.geoJson(HPAI_Only, {
     // Define the geojson layer and add it to the map
     L.geoJson(data1).addTo(cities);
 	});
-	$.getJSON('HPAI_Only.json', function (data2) {
-    L.geoJson(data2).addTo(HPAI_Only);
-	var testlayer = L.geoJson(data2);
-	 var sliderControl = L.control.sliderControl({
-        position: "topright",
-        layer: testlayer,
-        range: true
-      });
-      map.addControl(sliderControl);
-      sliderControl.startSlider();
-	});
+	
 	$.getJSON('poultry.json', function (data3) {
     L.geoJson(data3).addTo(poultry);
 	});
