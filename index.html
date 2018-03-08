@@ -36,13 +36,17 @@
  <script src="js/SliderControl.js"</script>
  <script src="js/OpenLayers.Format.GeoJSONTimeline.js" type="text/javascript"></script> 
  <script src="timeline.js" type="text/javascript"></script>
- 
+ <script src="js/route.js"></script>
+ <script src="js/L.Polyline.SnakeAnim.js"></script>
     <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script>
+
+
+
 	var cities = L.layerGroup();
 	var HPAI_Only = L.layerGroup();
 	var poultry = L.layerGroup();
@@ -146,6 +150,42 @@ L.geoJson(HPAI_Only, {
 	
 	timeline = new OpenLayers.Timeline({map: map, timeline: "#timeline", date_key: "Date_", format: OpenLayers.Format.GeoJSONTimeline});
 	timeline.initTimeline(pintail4185points);
+	
+	
+	
+	
+		for (var i = 0, latlngs = [], len = route.length; i < len; i++) {
+			latlngs.push(new L.LatLng(route[i][0], route[i][1]));
+		}
+
+		var path = L.polyline(latlngs);
+
+		//var map = L.map('map');
+
+		var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+		}).addTo(map);
+
+
+		map.fitBounds(L.latLngBounds(latlngs));
+
+		map.addLayer(L.marker(latlngs[0]));
+		map.addLayer(L.marker(latlngs[len - 1]));
+
+		map.addLayer(path);
+
+		path.bindPopup("Hello world");
+
+
+		function snake() {
+			path.snakeIn();
+		}
+
+		path.on('snakestart snake snakeend', function(ev){
+			console.log(ev.type);
+		});
+
+
 	/*
 	function onEachFeature(HPAI_Only, HPAI_Only) {
     HPAI_Only.on('click', function (e) {
