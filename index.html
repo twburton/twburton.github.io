@@ -172,7 +172,19 @@ L.geoJson(HPAI_Only, {
 	//coords3 = coords.push( parseFloat(pintail4185points.geometry.coordinates[1]), parseFloat(pintail4185points.geometry.coordinates[0]))
 	coords4 = pintail4185points.getLatLng();
 	console.log(coords4);
-	
+	var geojsonFeature = {
+    "type": "Feature",
+    "properties": {
+        "name": "Coors Field",
+        "amenity": "Baseball Stadium",
+        "popupContent": "This is where the Rockies play!"
+    },
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-104.99404, 39.75621]
+    }
+};
+	console.log(geojsonFeature.getLatLng());
 	//var markers = [];
 	//for (i = 0; i < jsonarray.length; i+2) { 
 	//	markers[i] = [jsonarray[i],jsonarray[i+1]];
