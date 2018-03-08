@@ -158,13 +158,16 @@ L.geoJson(HPAI_Only, {
 	//timeline.initTimeline(pintail4185points);
 	
 	jQuery.get('pintail4185coords.txt', function(data) {
-    jsonarray = alert(data);
-	console.log(data);
-	});
+    var jsonarray = data.split(',');
 	
-	for (i = 0; i < jsonarray.length; i++) { 
-		//var "pnt"+i = [37.332527805000041,-120.94729765699998];
-	}
+	var longitude = (featureLayer.getGeoJSON()).features[0].geometry.coordinates[0];
+	var latitude = (featureLayer.getGeoJSON()).features[0].geometry.coordinates[1];
+	console.log(longitude);
+	});
+	var markers = [];
+	for (i = 0; i < jsonarray.length; i+2) { 
+		markers[i] = [jsonarray[i],jsonarray[i+1]];
+	};
 		
 
 		var pnt1 = [37.332527805000041,-120.94729765699998],
