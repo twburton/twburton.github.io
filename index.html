@@ -162,11 +162,11 @@ L.geoJson(HPAI_Only, {
 	
 
 
-		var trd = [63.5, 11],
-		    mad = [40.5, -3.5],
-		    lnd = [51.5, -0.5],
-		    ams = [52.3, 4.75],
-		    vlc = [39.5, -0.5];
+		var trd = [-120.94729765699998, 37.332527805000041],
+		    mad = [-120.94729765699998, 37.208226582000066],
+		    lnd = [-120.94729765699998, 37.208226582000066],
+		    ams = [-120.94729765699998, 37.208226582000066],
+		    vlc = [-120.92368183799999, 37.177713030000064];
 
 
 		var route = L.featureGroup([
@@ -188,7 +188,7 @@ L.geoJson(HPAI_Only, {
 		}).addTo(map);
 
 
-		map.fitBounds(route.getBounds());
+		//map.fitBounds(route.getBounds());
 
 // 		map.addLayer(new L.Marker(latlngs[0]));
 // 		map.addLayer(new L.Marker(latlngs[len - 1]));
