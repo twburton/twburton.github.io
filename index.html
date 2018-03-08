@@ -155,35 +155,50 @@ L.geoJson(HPAI_Only, {
 	
 	
 	for (var i = 0, latlngs = [], len = route.length; i < len; i++) {
-		latlngs.push(new L.LatLng(route[i][0], route[i][1]));
-	}
+// 			latlngs.push(new L.LatLng(route[i][0], route[i][1]));
+// 		}
 
-	var path = L.polyline(latlngs);
-
-	var map = L.map('map');
-
-	var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-	}).addTo(map);
+		var trd = [63.5, 11],
+		    mad = [40.5, -3.5],
+		    lnd = [51.5, -0.5],
+		    ams = [52.3, 4.75],
+		    vlc = [39.5, -0.5];
 
 
-	map.fitBounds(L.latLngBounds(latlngs));
+		var route = L.featureGroup([
+			L.marker(trd),
+			L.polyline([trd, ams]),
+			L.marker(ams),
+			L.polyline([ams, lnd]),
+			L.marker(lnd),
+			L.polyline([lnd, mad]),
+			L.marker(mad),
+			L.polyline([mad, vlc]),
+			L.marker(vlc)
+		]);
 
-	map.addLayer(L.marker(latlngs[0]));
-	map.addLayer(L.marker(latlngs[len - 1]));
+		var map = L.map('map');
 
-	map.addLayer(path);
+		var positron = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+		}).addTo(map);
 
-	path.bindPopup("Hello world");
 
+		map.fitBounds(route.getBounds());
 
-	function snake() {
-		path.snakeIn();
-	}
+// 		map.addLayer(new L.Marker(latlngs[0]));
+// 		map.addLayer(new L.Marker(latlngs[len - 1]));
 
-	path.on('snakestart snake snakeend', function(ev){
-		console.log(ev.type);
-	});
+		map.addLayer(route);
+
+		function snake() {
+			route.snakeIn();
+		}
+
+		route.on('snakestart snake snakeend', function(ev){
+			console.log(ev.type);
+		});
+
 
 
 	
