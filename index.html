@@ -168,21 +168,11 @@ L.geoJson(HPAI_Only, {
 	//var coords2 = pintail4185points.getlatlng();
 	//console.log(coords2);
 	//console.log(pintail4185points.latlng);
-	coords = [];
-	coords3 = coords.push( parseFloat(pintail4185points.geometry.coordinates[1]), parseFloat(pintail4185points.geometry.coordinates[0]))
-	console.log(coords3);
+	coords4 = [];
+	//coords3 = coords.push( parseFloat(pintail4185points.geometry.coordinates[1]), parseFloat(pintail4185points.geometry.coordinates[0]))
+	coords4 = pintail4185points.getLatLngs();
+	console.log(coords4);
 	
-	map.on('draw:created', function (e) {
-    var type = e.layerType,
-        layer = e.layer;
-
-    map.addLayer(layer);
-
-    if (type === 'marker') {    
-        layer.bindPopup('LatLng: ' + layer.getLatLng()).openPopup();
-    }
-
-});
 	//var markers = [];
 	//for (i = 0; i < jsonarray.length; i+2) { 
 	//	markers[i] = [jsonarray[i],jsonarray[i+1]];
