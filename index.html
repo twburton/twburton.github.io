@@ -156,7 +156,21 @@ L.geoJson(HPAI_Only, {
 	
 	//timeline = new OpenLayers.Timeline({map: map, timeline: "#timeline", date_key: "Date_", format: OpenLayers.Format.GeoJSONTimeline});
 	//timeline.initTimeline(pintail4185points);
-
+	
+	jQuery.get('pintail4185coords.txt', function(data) {
+    var jsonarray = data.split(',');
+	
+	//var longitude = (pintail4185points.getGeoJSON()).features[0].geometry.coordinates[0];
+	//var latitude = (pintail4185points.getGeoJSON()).features[0].geometry.coordinates[1];
+	var coords = layer.pintail4185points.geometry.coordinates;
+	console.log(coords);
+	});
+	
+	var markers = [];
+	for (i = 0; i < jsonarray.length; i+2) { 
+		markers[i] = [jsonarray[i],jsonarray[i+1]];
+	};
+		
 
 		var pnt1 = [37.332527805000041,-120.94729765699998],
 		    pnt2 = [37.208226582000066,-120.94729765699998],
